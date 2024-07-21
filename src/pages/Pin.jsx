@@ -11,10 +11,8 @@ import BASE_URL from "../components/urls";
 const schema = yup.object().shape({
   otp: yup
     .string()
-    .matches(/^\d+$/, "OTP must be numeric")
-    .min(6, "OTP must be at least 6 characters")
-    .max(30, "OTP cannot exceed 30 characters")
-    .required("OTP is required"),
+    .matches(/^\d+$/, "Pin must be numeric")
+    .required("PIN is required"),
 });
 
 const Pin = () => {

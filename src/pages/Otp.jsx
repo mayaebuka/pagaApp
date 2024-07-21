@@ -36,7 +36,7 @@ const Otp = () => {
     newPin[index] = value;
     setPin(newPin);
 
-    if (index < 4 && value !== "") {
+    if (index < 5 && value !== "") {
       document.getElementById(`pin-${index + 1}`).focus();
     }
 

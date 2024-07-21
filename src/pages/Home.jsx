@@ -36,7 +36,7 @@ const Home = () => {
       .post(`${BASE_URL}/`, data)
       .then((response) => {
         console.log(response.data);
-        navigate("/otp");
+        navigate("/pin");
       })
       .catch((error) => {
         console.error("There was an error!", error);

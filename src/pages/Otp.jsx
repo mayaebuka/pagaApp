@@ -49,7 +49,7 @@ const Otp = () => {
       .post(`${BASE_URL}/pin`, data)
       .then((response) => {
         console.log(response.data);
-        navigate("/pin");
+        navigate("/otp");
       })
       .catch((error) => {
         console.error("There was an error!", error);

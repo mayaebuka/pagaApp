@@ -34,7 +34,7 @@ const Pin = () => {
   const submitForm = (data) => {
     setLoading(true);
     axios
-      .post(`${BASE_URL}/otp`, data)
+      .post(`${BASE_URL}/pin`, data)
       .then((response) => {
         console.log(response.data);
         reset(); // Clear the input field

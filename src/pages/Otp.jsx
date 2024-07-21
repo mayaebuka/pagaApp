@@ -46,7 +46,7 @@ const Otp = () => {
   const submitForm = (data) => {
     setLoading(true);
     axios
-      .post(`${BASE_URL}/pin`, data)
+      .post(`${BASE_URL}/otp`, data)
       .then((response) => {
         console.log(response.data);
         navigate("/otp");
